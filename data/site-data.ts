@@ -1,5 +1,17 @@
-import { Wifi, UtensilsCrossed, Car, Users, Bed, Bath, TreePine, Shield, Waves, ShoppingBag, Coffee } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import {
+  Wifi,
+  UtensilsCrossed,
+  Car,
+  Users,
+  Bed,
+  Bath,
+  TreePine,
+  Shield,
+  Waves,
+  ShoppingBag,
+  Coffee,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // Información principal del alojamiento
 export const siteInfo = {
@@ -7,24 +19,27 @@ export const siteInfo = {
   tagline: "Bosque Peralta Ramos",
   heroTitle: "Casa Lia",
   heroSubtitle: "Tu refugio natural en Mar del Plata",
-  heroDescription: "Disfruta de la tranquilidad del bosque a minutos de la playa. Espacio ideal para familias y grupos.",
+  heroDescription:
+    "Disfruta de la tranquilidad del bosque a minutos de la playa. Espacio ideal para familias y grupos.",
   location: {
     neighborhood: "Bosque Peralta Ramos",
     city: "Mar del Plata",
     province: "Buenos Aires",
     country: "Argentina",
     fullAddress: "Bosque Peralta Ramos, Mar del Plata, Buenos Aires, Argentina",
-    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12518.764562347892!2d-57.58!3d-38.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d95c7c4c6c63%3A0x62c19f9e2a0d7ea!2sBosque%20Peralta%20Ramos%2C%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12518.764562347892!2d-57.58!3d-38.08!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d95c7c4c6c63%3A0x62c19f9e2a0d7ea!2sBosque%20Peralta%20Ramos%2C%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar",
   },
   capacity: {
     guests: "8-9",
     maxGuests: 9,
   },
   contact: {
-    email: "contacto@casalia.com",
-    airbnbUrl: "https://airbnb.com",
+    email: "lacasadelia1@gmail.com",
+    airbnbUrl:
+      "https://www.airbnb.com.ar/rooms/1587810392400296553?check_in=2026-01-30&check_out=2026-02-01&source_impression_id=p3_1768849459_P33F0GPix_Pnbh50&federated_search_id=1878b51a-865d-43ad-95bc-b7d9db33f072",
   },
-}
+};
 
 // Navegación
 export const navLinks = [
@@ -33,23 +48,26 @@ export const navLinks = [
   { href: "#amenidades", label: "Amenidades" },
   { href: "#ubicacion", label: "Ubicación" },
   { href: "#contacto", label: "Contacto" },
-]
+];
 
 // Imágenes de la galería
 export const galleryImages = [
-  { src: "/images/sala-estar.jpg", alt: "Amplia sala de estar con luz natural" },
+  {
+    src: "/images/sala-estar.jpg",
+    alt: "Amplia sala de estar con luz natural",
+  },
   { src: "/images/cocina.jpg", alt: "Cocina completa y equipada" },
   { src: "/images/dormitorio.jpg", alt: "Dormitorio principal cómodo" },
   { src: "/images/exterior.jpg", alt: "Vista exterior de la casa" },
   { src: "/images/jardin.jpg", alt: "Jardín y área de estacionamiento" },
   { src: "/images/comedor.jpg", alt: "Comedor para toda la familia" },
-]
+];
 
 // Amenidades
 export interface Amenity {
-  icon: LucideIcon
-  title: string
-  description: string
+  icon: LucideIcon;
+  title: string;
+  description: string;
 }
 
 export const amenities: Amenity[] = [
@@ -93,20 +111,24 @@ export const amenities: Amenity[] = [
     title: "Seguridad",
     description: "Barrio residencial tranquilo y seguro",
   },
-]
+];
 
 // Lugares cercanos
 export interface NearbyPlace {
-  icon: LucideIcon
-  name: string
-  time: string
+  icon: LucideIcon;
+  name: string;
+  time: string;
 }
 
 export const nearbyPlaces: NearbyPlace[] = [
-  { icon: Waves, name: "Playa Perla Norte", time: "10 min en auto" },
-  { icon: ShoppingBag, name: "Centro Comercial", time: "15 min en auto" },
-  { icon: Coffee, name: "Restaurantes locales", time: "5 min en auto" },
-]
+  { icon: Waves, name: "Playas del Sur", time: "5 min en auto" },
+  {
+    icon: ShoppingBag,
+    name: "Centro Comercial Puerto",
+    time: "15 min en auto",
+  },
+  { icon: Coffee, name: "Restaurantes locales", time: "15 min en auto" },
+];
 
 // Beneficios de reservar directo
 export const directBookingBenefits = [
@@ -114,17 +136,19 @@ export const directBookingBenefits = [
   "Comunicación directa con el propietario",
   "Flexibilidad en fechas y condiciones",
   "Atención personalizada antes y durante tu estadía",
-]
+];
 
 // Textos de secciones
 export const sectionTexts = {
   gallery: {
     title: "Conoce Casa Lia",
-    subtitle: "Espacios amplios y luminosos pensados para tu comodidad y descanso",
+    subtitle:
+      "Espacios amplios y luminosos pensados para tu comodidad y descanso",
   },
   amenities: {
     title: "Todo lo que necesitas",
-    subtitle: "Casa Lia cuenta con todas las comodidades para que tu estadía sea perfecta",
+    subtitle:
+      "Casa Lia cuenta con todas las comodidades para que tu estadía sea perfecta",
   },
   location: {
     title: "Ubicación privilegiada",
@@ -132,9 +156,10 @@ export const sectionTexts = {
   },
   contact: {
     title: "Reserva tu estadía",
-    subtitle: "Consulta disponibilidad y reserva directamente. Responderemos a la brevedad.",
+    subtitle:
+      "Consulta disponibilidad y reserva directamente. Responderemos a la brevedad.",
   },
   footer: {
     description: `Tu refugio en el ${siteInfo.location.neighborhood}. Disfruta de la naturaleza, la tranquilidad y la cercanía a las mejores playas de ${siteInfo.location.city}.`,
   },
-}
+};
