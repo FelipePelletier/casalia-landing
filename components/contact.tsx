@@ -1,12 +1,20 @@
 "use client";
 
 import React from "react";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Calendar, MessageCircle, ExternalLink, Check } from "lucide-react";
+import {
+  Calendar,
+  MessageCircle,
+  ExternalLink,
+  Check,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
 import Link from "next/link";
 import {
   siteInfo,
@@ -14,13 +22,72 @@ import {
   directBookingBenefits,
 } from "@/data/site-data";
 
-export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+type FormStatus = "idle" | "loading" | "success" | "error";
 
-  const handleSubmit = (e: React.FormEvent) => {
+export function Contact() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    checkin: "",
+    checkout: "",
+    huespedes: "",
+    mensaje: "",
+  });
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre,
+          email: formData.email,
+          telefono: formData.huespedes ? `${formData.huespedes} huespedes` : "",
+          fechas:
+            formData.checkin && formData.checkout
+              ? `${formData.checkin} al ${formData.checkout}`
+              : "",
+          mensaje: formData.mensaje || "Consulta de disponibilidad",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al enviar el mensaje");
+      }
+
+      setStatus("success");
+      setFormData({
+        nombre: "",
+        email: "",
+        checkin: "",
+        checkout: "",
+        huespedes: "",
+        mensaje: "",
+      });
+
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(
+        error instanceof Error ? error.message : "Error al enviar el mensaje",
+      );
+    }
   };
 
   return (
@@ -42,71 +109,126 @@ export function Contact() {
               Envíanos un mensaje
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Nombre completo</Label>
-                  <Input id="name" placeholder="Tu nombre" required />
+            {status === "success" ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-primary" />
                 </div>
+                <h4 className="font-semibold text-xl text-foreground mb-2">
+                  Mensaje enviado
+                </h4>
+                <p className="text-muted-foreground">
+                  Te responderemos a la brevedad. Gracias por tu interes en Casa
+                  Lia.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {status === "error" && (
+                  <div className="flex items-center gap-2 p-3 bg-destructive/10 text-destructive rounded-lg">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <p className="text-sm">{errorMessage}</p>
+                  </div>
+                )}
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="nombre">Nombre completo *</Label>
+                    <Input
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      placeholder="Tu nombre"
+                      required
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Correo electrónico *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="tu@email.com"
+                      required
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="checkin">Fecha de llegada</Label>
+                    <Input
+                      id="checkin"
+                      name="checkin"
+                      type="date"
+                      value={formData.checkin}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="checkout">Fecha de salida</Label>
+                    <Input
+                      id="checkout"
+                      name="checkout"
+                      type="date"
+                      value={formData.checkout}
+                      onChange={handleChange}
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <Label htmlFor="email">Correo //electrónico//</Label>
+                  <Label htmlFor="huespedes">Cantidad de huéspedes</Label>
                   <Input
-                    id="email"
-                    type="email"
-                    placeholder="tu@email.com"
-                    required
+                    id="huespedes"
+                    name="huespedes"
+                    type="number"
+                    min="1"
+                    max={siteInfo.capacity.maxGuests}
+                    value={formData.huespedes}
+                    onChange={handleChange}
+                    placeholder="Ej: 6"
+                    disabled={status === "loading"}
                   />
                 </div>
-              </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="checkin">Fecha de llegada</Label>
-                  <Input id="checkin" type="date" required />
+                  <Label htmlFor="mensaje">Mensaje (opcional)</Label>
+                  <Textarea
+                    id="mensaje"
+                    name="mensaje"
+                    value={formData.mensaje}
+                    onChange={handleChange}
+                    placeholder="Cuéntanos sobre tu viaje o cualquier consulta que tengas..."
+                    rows={4}
+                    disabled={status === "loading"}
+                  />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="checkout">Fecha de salida</Label>
-                  <Input id="checkout" type="date" required />
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="guests">Cantidad de huéspedes</Label>
-                <Input
-                  id="guests"
-                  type="number"
-                  min="1"
-                  max={siteInfo.capacity.maxGuests}
-                  placeholder="Ej: 6"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Mensaje (opcional)</Label>
-                <Textarea
-                  id="message"
-                  placeholder="Cuéntanos sobre tu viaje o cualquier consulta que tengas..."
-                  rows={4}
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                size="lg"
-                disabled={isSubmitted}
-              >
-                {isSubmitted ? (
-                  <>
-                    <Check className="mr-2 h-4 w-4" />
-                    Mensaje enviado
-                  </>
-                ) : (
-                  "Consultar disponibilidad"
-                )}
-              </Button>
-            </form>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    "Consultar disponibilidad"
+                  )}
+                </Button>
+              </form>
+            )}
           </div>
 
           <div className="flex flex-col gap-6">
