@@ -71,11 +71,11 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 rounded-full border-2 border-card/60 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-card/60 rounded-full" />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
