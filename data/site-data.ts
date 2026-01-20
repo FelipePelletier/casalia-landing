@@ -8,6 +8,7 @@ import {
   TreePine,
   Shield,
   Waves,
+  Dog,
   ShoppingBag,
   Coffee,
 } from "lucide-react";
@@ -151,9 +152,9 @@ export const amenities: Amenity[] = [
     description: "Toallas y artículos de higiene incluidos",
   },
   {
-    icon: TreePine,
-    title: "Entorno natural",
-    description: `Rodeado del tranquilo ${siteInfo.location.neighborhood}`,
+    icon: Dog,
+    title: "Pet friendly",
+    description: `Se permiten mascotas`,
   },
   {
     icon: Shield,
