@@ -25,17 +25,18 @@ export async function POST(request: Request) {
     const { nombre, email, telefono, mensaje, fechas } = await request.json();
 
     // Validacion basica
-    if (!nombre || !email || !mensaje) {
+    if (!nombre || !email) {
       return NextResponse.json(
-        { error: "Faltan campos requeridos" },
+        { error: "Nombre y email son obligatorios" },
         { status: 400 },
       );
     }
 
-    console.log("[v0] Enviando email a:", process.env.CONTACT_EMAIL);
+    const mensajeFinal = mensaje || "Consulta de disponibilidad";
+    //console.log("[v0] Enviando email a:", process.env.CONTACT_EMAIL);
 
     const { data, error } = await resend.emails.send({
-      from: "Casa Lia Web <onboarding@resend.dev>",
+      from: "Casa Lia Web <contacto@casaliabosque.com>",
       to: [process.env.CONTACT_EMAIL || "casalia@example.com"],
       replyTo: email,
       subject: `Nueva consulta de ${nombre} - Casa Lia`,
