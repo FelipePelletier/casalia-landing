@@ -53,14 +53,61 @@ export const navLinks = [
 // Imágenes de la galería
 export const galleryImages = [
   {
-    src: "/images/sala-estar.jpg",
+    src: "/images/living1.jfif",
     alt: "Amplia sala de estar con luz natural",
   },
-  { src: "/images/cocina.jpg", alt: "Cocina completa y equipada" },
-  { src: "/images/dormitorio.jpg", alt: "Dormitorio principal cómodo" },
-  { src: "/images/exterior.jpg", alt: "Vista exterior de la casa" },
-  { src: "/images/jardin.jpg", alt: "Jardín y área de estacionamiento" },
-  { src: "/images/comedor.jpg", alt: "Comedor para toda la familia" },
+  {
+    src: "/images/living2.jfif",
+    alt: "2do angulo de amplia sala de estar con luz natural",
+  },
+  {
+    src: "/images/living3.jfif",
+    alt: "3er angulo de amplia sala de estar con luz natural",
+  },
+  {
+    src: "/images/living4.jfif",
+    alt: "4to angulo de amplia sala de estar con luz natural",
+  },
+  {
+    src: "/images/living5.jfif",
+    alt: "5to angulo de amplia sala de estar con luz natural",
+  },
+  {
+    src: "/images/living6.jfif",
+    alt: "6to angulo de amplia sala de estar con luz natural",
+  },
+  {
+    src: "/images/cocina1.jfif",
+    alt: "Cocina amplia y bien equipada",
+  },
+  {
+    src: "/images/cocina2.jfif",
+    alt: "2do angulo de cocina amplia y bien equipada",
+  },
+  {
+    src: "/images/cocina3.jfif",
+    alt: "3er angulo de cocina amplia y bien equipada",
+  },
+  {
+    src: "/images/cocina4.jfif",
+    alt: "4to angulo de cocina amplia y bien equipada",
+  },
+  { src: "/images/parking1.jfif", alt: "Parking amplio" },
+  { src: "/images/dormitorio1.jfif", alt: "Dormitorio 1 cómodo" },
+  { src: "/images/banodom1.jfif", alt: "Banio de dormitorio 1 cómodo" },
+  { src: "/images/bano2dom1.jfif", alt: "Banio 2 de dormitorio 1 cómodo" },
+  { src: "/images/dormitorio2.jfif", alt: "Dormitorio 2 cómodo" },
+  { src: "/images/dormitorio22.jfif", alt: "2do angulo dormitorio cómodo" },
+  { src: "/images/dormitorio222.jfif", alt: "3er angulo dormitorio 2 cómodo" },
+  { src: "/images/bano1.jfif", alt: "Banio del living" },
+  { src: "/images/bano2.jfif", alt: "Inodoro con bidet" },
+  { src: "/images/parque1.jfif", alt: "Parque de la casa" },
+  { src: "/images/parque2.jfif", alt: "2do angulo del parque de la casa" },
+  { src: "/images/parque3.jfif", alt: "3er angulo del parque de la casa" },
+  { src: "/images/parque5.jfif", alt: "5to angulo del parque de la casa" },
+  { src: "/images/parque6.jfif", alt: "6to angulo del parque de la casa" },
+  { src: "/images/lavarropa.jfif", alt: "Lavarropa de la casa" },
+  { src: "/images/termotanque.jfif", alt: "Termotanque de la casa" },
 ];
 
 // Amenidades
@@ -79,7 +126,8 @@ export const amenities: Amenity[] = [
   {
     icon: UtensilsCrossed,
     title: "Cocina completa",
-    description: "Equipada con todo lo necesario para preparar tus comidas",
+    description:
+      "Equipada con todo lo necesario para preparar tus comidas, incluye parrilla en el exterior",
   },
   {
     icon: Car,
@@ -94,7 +142,8 @@ export const amenities: Amenity[] = [
   {
     icon: Bed,
     title: "Habitaciones confortables",
-    description: "Camas cómodas con ropa de cama de calidad",
+    description:
+      "2 habitaciones con 1 cama matrimonial y 1 individual por cada una, sumada a una cama nido con 3 colchones. Ropa de cama incluida",
   },
   {
     icon: Bath,
@@ -109,7 +158,7 @@ export const amenities: Amenity[] = [
   {
     icon: Shield,
     title: "Seguridad",
-    description: "Barrio residencial tranquilo y seguro",
+    description: "Alarma de casa y camaras de seguridad incluidas",
   },
 ];
 

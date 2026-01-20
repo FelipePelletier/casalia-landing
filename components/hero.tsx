@@ -1,15 +1,18 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { MapPin, Users, Star } from "lucide-react"
-import { siteInfo } from "@/data/site-data"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { MapPin, Users, Star } from "lucide-react";
+import { siteInfo } from "@/data/site-data";
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20">
+    <section
+      id="inicio"
+      className="relative min-h-screen flex items-center justify-center pt-20"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/hero-casa.jpg')",
+          backgroundImage: "url('/images/parque4.jfif')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
@@ -37,7 +40,11 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <Button size="lg" asChild className="text-base px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90">
+          <Button
+            size="lg"
+            asChild
+            className="text-base px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90"
+          >
             <Link href="#contacto">Consultar disponibilidad</Link>
           </Button>
           <Button
@@ -53,7 +60,9 @@ export function Hero() {
         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
           <div className="flex items-center gap-2 text-card/90">
             <MapPin className="h-5 w-5" />
-            <span>{siteInfo.location.city}, {siteInfo.location.country}</span>
+            <span>
+              {siteInfo.location.city}, {siteInfo.location.country}
+            </span>
           </div>
           <div className="flex items-center gap-2 text-card/90">
             <Users className="h-5 w-5" />
@@ -68,5 +77,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
